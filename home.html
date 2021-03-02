@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">      
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    <meta name="author" content=" Henrique">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+    <body>
+        <header>
+            <nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="#">Henrique Games</a>  
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">                  
+                  <div class="navbar-nav mr-auto">   
+                    <a class="nav-item nav-link" href="#" id="linkInicio">HOME <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#" id="linkVerUsuario">Listar</a>
+                    <a class="nav-item nav-link" href="#" id="linkLimparCarrinho">Limpar Carrinho</a>
+                    <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#modalDeletarUsuario">Deletar Usuario</a>
+                    <a class="nav-item nav-link" href="#" id="linkVerCarrinho">Carrinho</a>
+                    <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#modalIncluirJogo">Cadastrar Jogo</a>
+                    <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#modalDeletarJogo">DeletarJogo</a>
+                    <div class="nav-item dropdown"href="#" id="navUsuarioFuncoes">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{url_for('static', filename=current_user.caminho_foto)}}" height="32" width="32"></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIncluirUsuario">Inscreva-se</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLogarUsuario">Login</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  
+            </nav>
+        </header>
+        <div id="corpoDaPagina">
+
+          <div id="conteudoInicial" class="invisible">
+              Bem vindo ao Herique Games.
+              <div class="card-group" href="#" id = jogos>
+
+              </div>
+          </div>
+          <div class="modal fade" id="modalDeletarUsuario" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Deletar Usuario</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="campoDCPF">CPF Do Usuario</label>
+                                    <input type="text" class="form-control" id="campoDCPF">
+                                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="btDeletarUsuario" type="button" class="btn btn-primary">Deletar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalDeletarJogo" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Deletar Jogo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="campoTitulo">Nome Do Jogo</label>
+                                    <input type="text" class="form-control" id="campoTitulo">
+                                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="btDeletarJogo" type="button" class="btn btn-primary">Deletar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalIncluirJogo" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Incluir Jogo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                  <label for="campoCaminhoFoto">Caminho Foto</label>
+                                  <input type="file" class="form-control" id="campoCaminhoFoto">
+                                </div>  
+                                <div class="form-group">
+                                    <label for="campoTitulo">Nome Do Jogo</label>
+                                    <input type="text" class="form-control" id="campoTitulo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoPrecoPromocao">Preço Promoção</label>
+                                    <input type="text" class="form-control" id="campoPrecoPromocao">
+                                </div>
+                                <div class="form-group">
+                                  <label for="campoPrecoNormal">Preço Normal</label>
+                                  <input type="text" class="form-control" id="campoPrecoNormal">
+                                </div>
+                                <div class="form-group">
+                                  <label for="campoPrecoAtual">Preço Atual</label>
+                                  <input type="text" class="form-control" id="campoPrecoAtual">
+                                </div>
+                                <div class="form-group">
+                                  <label for="campoGenero">Genero</label>
+                                  <input type="text" class="form-control" id="campoGenero">
+                                </div>            
+                                <div class="form-group">
+                                  <label for="campoDescricao">Descrição do Jogo</label>
+                                  <input type="text" class="form-control" id="campoDescricao">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="btIncluirJogo" type="button" class="btn btn-primary">Incluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalIncluirUsuario" tabindex="-1" role="dialog"
+            aria-labelledby="usuarioModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="usuarioModalLabel">Incluir Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                              <label for="campoCaminhoFoto">Caminho Foto</label>
+                              <input type="file" class="form-control" id="campoCaminhoFoto">
+                            </div>
+                            <div class="form-group">
+                                <label for="campoNome">Nome Do Usuario</label>
+                                <input type="text" class="form-control" id="campoNome">
+                            </div>
+                            <div class="form-group">
+                                <label for="campoCPF">CPF</label>
+                                <input type="text" class="form-control" id="campoCPF">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoCidade">Cidade</label>
+                              <input type="text" class="form-control" id="campoCidade">
+                            </div>    
+                            <div class="form-group">
+                              <label for="campoEstado">Estado</label>
+                              <input type="text" class="form-control" id="campoEstado">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoCEP">CEP</label>
+                              <input type="text" class="form-control" id="campoCEP">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoRua">Rua</label>
+                              <input type="text" class="form-control" id="campoRua">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoNumeroImovel">Numero Imovel</label>
+                              <input type="text" class="form-control" id="campoNumeroImovel">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoDataDeNacimento">Data De Nacimento</label>
+                              <input type="data" class="form-control" id="campoDataDeNacimento">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoEmail">Email</label>
+                              <input type="email" class="form-control" id="campoEmail">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoSenhaInclude">Senha</label>
+                              <input type="password" class="form-control" id="campoSenhaInclude">
+                            </div>
+                            <div class="form-group">
+                              <label for="campoSexo">Sexo</label>
+                              <input type="text" class="form-control" id="campoSexo">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="btIncluirUsuario" type="button" class="btn btn-primary">Incluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalLogarUsuario" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Logar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="campoNomeDoUsuario">Nome Do Usuario</label>
+                                <input type="text" class="form-control" id="campoNomeDoUsuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="campoSenha">Senha</label>
+                                <input type="password" class="form-control" id="campoSenha">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="btLogarUsuario" type="button" class="btn btn-primary">Logar</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+            <table class="table invisible table-striped table-hover" id="tabelaUsers">
+              <thead>
+                  <!-- primeira linha da tabela: títulos -->
+                  <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Email</th>
+                  </tr>
+              </thead>
+              <tbody href="#" id="corpoTabelaUsers">
+                  <!-- aqui serão exibidas as pessoas -->
+              </tbody>
+          </table>
+        </div> <!-- fim da div corpo da página --> 
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+          crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+          crossorigin="anonymous"></script>
+      <script src="../static/JS/funcoes.js"></script>
+    
+    </body>
+</html>
